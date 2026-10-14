@@ -1,0 +1,41 @@
+[package]
+name = "copernicusmarine"
+version = "0.1.0"
+edition = "2021"
+description = "Barebone Rust port of the Copernicus Marine Toolbox: login, describe, get and subset"
+readme = "README.md"
+
+[lib]
+name = "copernicusmarine"
+path = "src/lib.rs"
+
+[[bin]]
+name = "copernicusmarine"
+path = "src/main.rs"
+
+[dependencies]
+anyhow = "1"
+base64 = "0.22"
+bytes = "1"
+chrono = { version = "0.4", default-features = false, features = ["clock", "std"] }
+clap = { version = "4", features = ["derive"] }
+dirs = "5"
+env_logger = "0.11"
+flate2 = "1"
+futures = "0.3"
+indicatif = "0.17"
+indexmap = "2"
+log = "0.4"
+lz4_flex = "0.11"
+regex = "1"
+reqwest = { version = "0.12", default-features = false, features = ["rustls-tls", "json", "stream", "gzip"] }
+roxmltree = "0.20"
+rpassword = "7"
+ruzstd = "0.7"
+serde = { version = "1", features = ["derive"] }
+serde_json = { version = "1", features = ["preserve_order", "float_roundtrip"] }
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "fs", "io-util", "sync"] }
+
+[profile.release]
+lto = "thin"
+codegen-units = 4
